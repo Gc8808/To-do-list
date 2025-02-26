@@ -1,38 +1,38 @@
-//initialize an array to store tasks
+// Initialize an array to store tasks
 let tasks = []
 
-//add an event listener to add tasts to the add tasks btn
+// Add an event listener to add tasks TO the Add Task Button
 document.getElementById('addTaskBtn').addEventListener('click', function () {
-    //storing text value from input box as a variable 'taskInput'
+    // Storing text value from input box as a variable 'taskInput'
     let taskInput = document.getElementById('taskInput').value
-    //asking a question to the taskInput
+
+    // Checks if there is a Truthy or Falsy Statement
     if (taskInput) {
-        //pushes out the variable of taskInput
+        // Add the task to the tasks array
         tasks.push(taskInput)
-        //every time you type something and then click the button, it gets rid of whatever you typed
+
+        // Clear the input field after adding the task
         document.getElementById('taskInput').value = ''
-        //call the function to update the task list display
+
+        // Call function to update the task List display
         displayTasks()
     }
-
-
 })
 
-//function to display the tasks from tasks[] to the UL
+// Function to display the tasks[] array in the UL
 function displayTasks() {
-    //select the unordered list on the HTML
+    // Select the unordered list (taskList) in the HTML
     let taskList = document.getElementById('taskList')
 
-
-    //clear the existing task list before updating it
+    // Clear the existing task list before updating it
     taskList.innerHTML = ''
 
-    //loop through each tsk in the array and create a list item
+    // Loop through each task in the array and create a list item
     tasks.forEach((task, index) => {
-        //Create anew <li> element for each task
+        // Create a new <li> element for each task
         let li = document.createElement('li')
 
-        // add bootstrap classes for styling
+        // Add Bootstrap classes for styling
         li.classList.add(
             'list-group-item',
             'd-flex',
@@ -40,18 +40,20 @@ function displayTasks() {
             'align-items-center'
         )
 
-        //set the inner HTML of the <li> element with task text and a remove button
-li.innerHTML = `${task} <button class='btn btn-dark btn-sm' onclick= 'removeTask(${index})'> √ </button>`
+        //Set the inner HTML of the <li> element with task text and a remove button
+        li.innerHTML = `${task} <button class='btn btn-dark btn-sm' onclick='removeTask(${index})'>√</button>`
 
-//append the new task to the task list
-taskList.appendChild(li)
+        // Append the new task to the task list
+        taskList.appendChild(li)
     })
 }
 
-//Remove task when clicking √
-function removeTask (index){
-    //Remove the task at the given index of the array
- tasks.splice(index, 1)
- //Call display tasks 
- displayTasks()
+// Function to remove a task from the list when the "√" button is clicked
+function removeTask(index) {
+    // Remove the task at the given index from the array
+    tasks.splice(index, 1)
+
+    // Call the function to update the task list display
+    displayTasks()
+
 }
