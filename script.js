@@ -19,6 +19,24 @@ document.getElementById('addTaskBtn').addEventListener('click', function () {
     }
 })
 
+document.getElementById('addTaskBtn').addEventListener('keydown', function () {
+    // Storing text value from input box as a variable 'taskInput'
+    let taskInput = document.getElementById('taskInput').value
+
+    // Checks if there is a Truthy or Falsy Statement
+    if (taskInput) {
+        // Add the task to the tasks array
+        tasks.push(taskInput)
+
+        // Clear the input field after adding the task
+        document.getElementById('taskInput').value = ''
+
+        // Call function to update the task List display
+        displayTasks()
+    }
+}) 
+
+
 // Function to display the tasks[] array in the UL
 function displayTasks() {
     // Select the unordered list (taskList) in the HTML
@@ -57,3 +75,11 @@ function removeTask(index) {
     displayTasks()
 
 }
+
+//Add event listener for clear
+document.getElementById('clearTaskBtn').addEventListener('click', function() {
+    //Empty all tasks
+    tasks = []
+    //Display cleared list
+    displayTasks()
+})
